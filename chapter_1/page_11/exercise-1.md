@@ -1,4 +1,4 @@
-### 1. This function uses a combination SCAS and STOS to do its work. 
+1. This function uses a combination SCAS and STOS to do its work. 
     First, explain what is the type of the [EBP+8] and [EBP+C] in line 1 
     and 8, respectively. Next, explain what this snippet does.
 ```
