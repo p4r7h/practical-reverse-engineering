@@ -1,0 +1,1 @@
+In all of the calling conventions explained, the return value is stored in a 32-bit register ( EAX ). What happens when the return value does not fit in a 32-bit register? Write a program to experiment and evaluate your answer. Does the mechanism change from compiler to compiler?
