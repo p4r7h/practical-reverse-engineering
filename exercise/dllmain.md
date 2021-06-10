@@ -5,26 +5,42 @@
 
 02: _DllMain@12 proc near 
 
-// Set Up The Function prologue, which saves the previous base frame pointer and establishes a new line 
+; Set Up The Function prologue, which saves the previous base frame pointer and establishes a new line 
 03: 55 push ebp 
 04: 8B EC mov ebp, esp 
 
-// reserves 0x130 bytes of stack space
+; reserves 0x130 bytes of stack space
 05: 81 EC 30 01 00+ sub esp, 130h 
-// 
+
+; Line 6 Save EDI and line 7 executes the SIDT instruction, 
+;which write the 6-byte IDT register to a specified memory region.
 06: 57 push edi 
 07: 0F 01 4D F8 sidt fword ptr [ebp-8] 
+
+; its reads a double-word at EBP-6 and saves it in EAX
 08: 8B 45 FA mov eax, [ebp-6] 
+
+; check if EAX is below-or-equal to 0x8003F400. If it is, 
+; execution is transferred to line 18 otherwise its continue executing at line 11
 09: 3D 00 F4 03 80 cmp eax, 8003F400h 
 10: 76 10 jbe short loc_10001C88 (line 18) 
+
+; do a similar check except that the condition is not-below 0x80047400. 
+; If it is, execution is transferred to line 18
 11: 3D 00 74 04 80 cmp eax, 80047400h 
 12: 73 09 jnb short loc_10001C88 (line 18) 
+
+; its clear eax and saved EDI register in line 6
 13: 33 C0 xor eax, eax 
 14: 5F pop edi 
-15: 8B E5 mov esp, ebp
 
+; restore the previous base frame and stack pointer.
+15: 8B E5 mov esp, ebp
 16: 5D pop ebp 
-17: C2 0C 00 retn 0Ch 
+
+; adds 0xC bytes to the stack pointer and then returns to the caller.
+17: C2 0C 00 retn 0Ch
+
 18:       loc_10001C88: 
 19: 33 C0 xor eax, eax 
 20: B9 49 00 00 00 mov ecx, 49h 
