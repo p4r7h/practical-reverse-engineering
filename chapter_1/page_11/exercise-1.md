@@ -19,37 +19,40 @@
 
 [ebp+8] is a value in stack representing the first function parameter 
 This instruction copies the parameter, a pointer to the string, to register EDI. Now EDI references our string:
-``asm
+
+```asm
 pwndbg> x/s $edi
 0x804a000 <my_str>:     "The pool on the roof must have a leak."
-``
+```
 
 > Line 2 : `mov edx, edi`
+
 This simply makes a copy of EDI. The reason for that will be clear in line 5.
-``asm
+
+```asm
 pwndbg> x/s $edx
 0x804a000 <my_str>:     "The pool on the roof must have a leak."
-``
+```
 
 > Line 3 : `xor eax, eax`
 
 set eax to zero
-``asm
+```asm
 pwndbg> p/x $eax
 $3 = 0x0
-``
+```
 
 > Line 4 : `or ecx, 0FFFFFFFFh`
 
 This sets the value of ECX to 0xFFFFFFFF
 
-``asm
+```asm
 pwndbg> p/x $ecx
 $2 = 0xffffffff
 
 pwndbg> p/d $ecx            ; Print variable as a signed integer.
 $3 = -1
-``
+```
 
 > Line 5 : `repne scasb`
 
