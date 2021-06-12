@@ -96,10 +96,10 @@ $11 = 120 'x'
 after modifying edi in line 5 we are now restorying it from the backup edx that we create in line 2.
 after that edi once again pointing to the string
 
-``asm 
+```asm 
 pwndbg>  p/x $edi
 $12 = 0x804a000
-``
+```
 
 > Line 10 : `rep stosb`
 
@@ -109,6 +109,7 @@ effectively overwriting the entire string with a single character
 ![image](https://user-images.githubusercontent.com/37813830/121784846-f7bf9d00-cbd3-11eb-864d-c3dab2bcb808.png)
 
 > Line 11 : `mov eax, edx`
+
 This copies the address of the string to EAX. EAX holds the return value of the function, so the snippet returns a pointer to the modified string.
 
 
