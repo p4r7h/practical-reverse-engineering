@@ -14,3 +14,5 @@
 10: F3 AA rep stosb 
 11: 8B C2 mov eax, edx
 ```
+
+> Line 1 : `MOV EDi, [EBP+8]`
