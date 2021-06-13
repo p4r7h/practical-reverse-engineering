@@ -6,7 +6,8 @@ you can see that its compare a serial key with value and value is combination of
 so i check that function and i found that text3, text4 and text5 is besically a Product ID that showen in application 
 ![image](https://user-images.githubusercontent.com/37813830/121816247-2901a100-cc98-11eb-9f56-e778daf3e2a1.png)
 
-```string value = text3 + text + text4 + text5;```c#
+```c#
+string value = text3 + text + text4 + text5;```
 
 serial key is combination of Name and Product id we can clear see that our text contain our username and its only access (0, 4) substrings in upper case so 
 
